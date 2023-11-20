@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+using namespace std;
+/*
+There is other solution where we can just find the sum of n+1 nums and substrate sum of array elements
+i.e. (n+1)(n+2)/2 - sum(arr)
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+    while(t--) {
+        int n;
+        cin >> n;
+        vector<int> arr(n);
+        for(int i=0;i<n;i++)
+            cin >> arr[i];
+        
+        cout << ((n+1)*(n+2)/2 - accumulate(arr.begin(), arr.end(),0)) << "\n";
+    }   
+    return 0;
+}
+*/
+int main() {
+    int t;
+    cin >> t;
+    while(t--) {
+        int n;
+        cin >> n;
+        int arr[n];
+        for(int i=0;i<n;i++)
+            cin >> arr[i];
+        
+        for(int i=0;i<n;){
+            int curr = arr[i];
+            if(curr > n || curr == arr[curr-1])
+                i++;
+            else
+                swap(arr[curr-1], arr[i]);  
+        }
+        int i;
+        for(i=0;i<n;i++){
+            if(i + 1 !=  arr[i]) break;
+        }
+        cout << i+1 << "\n";
+    }   
+    return 0;
+}
